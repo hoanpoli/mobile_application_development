@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>EX1</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body
+        {
+            font-family: Arial;
+            font-size: 12pt;
+            margin: auto ;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1 align="center">Exercise 1</h1>
+        </div>
+        <div style="border: 1px solid violet ; padding: 10px">
+            <p>Họ và tên : Nguyễn Văn Hoan</p>
+            <p>Mssv :1411275</>
+        </div>
+    <div style="padding: 10px" class="row">
+        <div class="col-md-6 col-xs-12">
+            Latitude:
+            <input type="text" id="txtLat" value="10.881784" />
+        </div>
+        <div class="col-md-6 col-xs-12">
+        Longitude:
+        <input type="text" id="txtLong" value="106.804496" />
+        </div>
+        <br>
+        <br>
+        <div class="col-md-12">
+        <input type="button" value="Get Address" onclick="GetAddress()" />
+        </div>
+        <br>
+        <p id="test">Address : </p> 
+        <br>
+        <p id="address"> </p>
+    </div>
+    </div>
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+        function GetAddress() {
+            var lat = parseFloat(document.getElementById("txtLat").value);
+            var long = parseFloat(document.getElementById("txtLong").value);
+            var latlng = new google.maps.LatLng(lat, long);
+            var geocoder = geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': latlng }, function (kq, tt) {
+                if (tt == google.maps.GeocoderStatus.OK) {
+                    if (kq[0]) {
+                        document.getElementById("address").innerHTML = kq[0].formatted_address;
+                    }                      
+                }
+                else
+                {
+                     document.getElementById("address").innerHTML = "Invail Value";
+                }
+                });
+        }
+    </script>
+</body>
+</html>
